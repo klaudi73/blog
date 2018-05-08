@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+</head>
+<body>
+<!--
+<form action="login" th:action="@{/login}" method="post">
+        <input type="submit" value="login">
+</form>
+-->
+<br>
+<br>
+<a href="/login" class="button">login</a>
+<br>
+<br>
+<!--<a href="/register" >register</a>-->
+<a href="/register" class="button">register</a>
+<br>
+<br>
+<a href="/addArticle" class="button">Add article</a>
+<br>
+<br>
+<a href="/viewArticles" class="button">View articles</a>
+<br>
+<br>
+<a href="secret">go to secured area</a>
+<br>
+<br>
+<form action="logout" th:action="@{/logout}" method="post">
+    <input type="submit" value="logout">
+</form>
+
+</body>
+</html>

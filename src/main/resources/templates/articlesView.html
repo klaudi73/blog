@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Article</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <h2>Lista artykułów</h2>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>Title</th>
+            <th>Article (part)</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="article : ${articlesCol}">
+            <td th:text="${article.id}"></td>
+            <td th:text="${article.title}">Name</td>
+            <td th:text="${article.article}">Time</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

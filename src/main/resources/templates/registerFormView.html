@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Register Form View</title>
+</head>
+<body>
+<form th:action="@{/register}" th:object = "${user}" th:method="post">
+
+    <label for="login">login</label>
+    <input id="login" type="text" th:field = "*{login}" />
+    <br>
+
+    <label for="name">name</label>
+    <input id="name" type="text" th:field = "*{name}" />
+    <br>
+
+    <label for="password">password</label>
+    <input id="password" type="password" th:field = "*{password}" />
+    <br>
+
+    <label for="role">role</label>
+
+    <select id="role" th:field = "*{role}">
+        <option value="ROLE_USER">ROLE_USER</option>
+        <option value="ROLE_ADMIN">ROLE_ADMIN</option>
+    </select>
+    <br>
+
+    <input type="submit" value = "Add" />
+
+</form>
+
+</body>
+</html>
