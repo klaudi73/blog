@@ -10,6 +10,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.mvc.support.RedirectAttributesModelMap;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 @Controller
 public class ArticleController {
@@ -36,20 +41,30 @@ public class ArticleController {
 
 
     @GetMapping("/viewArticles")
-    public String viewArticles(@ModelAttribute("articlesCol") Iterable<ArticleEntity> articlesCol, Model model) {
+    public String viewArticles(@ModelAttribute("articlesCol") Iterable<ArticleEntity> articlesCol, Model model,
+                               RedirectAttributes redirectAttributes) {
+        if (Objects.isNull(articlesCol)) {
+            articlesCol = articleRepo.findAllByOrderByTitleAsc();
+            redirectAttributes.addFlashAttribute("articlesCol", articlesCol);
+        }
         model.addAttribute("articlesCol", articlesCol);
         return "articlesView";
     }
 
-    @GetMapping("/viewArticles")
-    public String viewArticles(Model model, RedirectAttributes redirectAttributes) {
-        Iterable<ArticleEntity> articlesCol = articleRepo.findAllByOrderByTitleAsc();
-        redirectAttributes.addFlashAttribute("articlesCol", articlesCol);
+    @GetMapping("/viewAllArticles")
+    public String viewAllArticles(Model model) {
+        //Iterable<ArticleEntity> articlesCol = articleRepo.findAllByOrderByTitleAsc();
+        Iterable<ArticleEntity> articlesCol = articleRepo.findAllByOrderByIdAsc();
+        model.addAttribute("articlesCol", articlesCol);
         return "articlesView";
     }
 
     @GetMapping("/viewArticle")
-    public String viewArticle(@ModelAttribute("article") ArticleEntity article, Model model) {
+    public String viewArticle(@ModelAttribute("id") Long id, Model model) {
+        article = articleRepo.findById(id).get();
+        /*if (!listArticle.isEmpty()) {
+            article = listArticle.get(0);
+        }*/
         model.addAttribute("article", article);
         return "articleView";
     }

@@ -36,4 +36,16 @@ public class LoginController {
         return "redirect:/";
     }
 
+    @GetMapping("/logout")
+    public String logoutForm(Model model) {
+        model.addAttribute("login", new UserEntity());
+        return "logoutView";
+    }
+
+    @PostMapping("/logout")
+    public String logoutForm(@ModelAttribute UserEntity userEntity) {
+        return "logoutView";
+    }
+
+
 }

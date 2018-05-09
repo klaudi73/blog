@@ -2,29 +2,137 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Article</title>
+    <title>Articles</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+    <style>
+        /* Remove the navbar's default margin-bottom and rounded borders */
+        .navbar {
+            margin-bottom: 0;
+            border-radius: 0;
+        }
+
+        /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+        .row.content {
+            height: 700px
+        }
+
+        /* Set gray background color and 100% height */
+        .sidenav {
+            padding-top: 20px;
+            background-color: #f1f1f1;
+            height: 100%;
+        }
+
+        /* Set black background color, white text and some padding */
+        footer {
+            background-color: #555;
+            color: white;
+            padding: 15px;
+        }
+
+        /* On small screens, set height to 'auto' for sidenav and grid */
+        @media screen and (max-width: 767px) {
+            .sidenav {
+                height: auto;
+                padding: 15px;
+            }
+
+            .row.content {
+                height: auto;
+            }
+        }
+    </style>
 </head>
 <body>
-<div class="container">
-    <h2>Lista artykułów</h2>
-    <table class="table table-hover">
-        <thead>
-        <tr>
-            <th>Title</th>
-            <th>Article (part)</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="article : ${articlesCol}">
-            <td th:text="${article.id}"></td>
-            <td th:text="${article.title}">Name</td>
-            <td th:text="${article.article}">Time</td>
-        </tr>
-        </tbody>
-    </table>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Logo</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="/">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/viewAllArticles">Artcles</a></li>
+                <!--<li><a href="#">Contact</a></li>-->
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/register"><span class="glyphicon glyphicon-edit"></span> Register</a></li>
+                <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container-fluid text-center">
+    <div class="row content">
+        <div class="col-sm-2 sidenav">
+            <!-- <p><a href="#">Link</a></p>
+            <p><a href="#">Link</a></p>
+            <p><a href="#">Link</a></p> -->
+        </div>
+        <div class="col-sm-8 text-left">
+            <h2>Lista artykułów</h2>
+            <table class="table table-hover table-striped">
+                <thead>
+                <tr>
+                    <th>ArticleId</th>
+                    <th>Title</th>
+                    <th>Article (part)</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="article : ${articlesCol}">
+                    <td>
+                        <a th:href="@{/viewArticle(id=${article.id})}">
+                            <font color="black">
+                                <span th:text="${article.id}"></span>
+                            </font>
+                        </a>
+                    </td>
+                    <td>
+                        <a th:href="@{/viewArticle(id=${article.id})}">
+                            <font color="black">
+                                <span th:text="${article.title}"></span>
+                            </font>
+                        </a>
+                    </td>
+                    <td>
+                        <a th:href="@{/viewArticle(id=${article.id})}">
+                            <font color="black">
+                                <span th:text="${article.article}"></span>
+                            </font>
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-sm-2 sidenav">
+            <!-- <div class="well">
+                <p>ADS</p>
+            </div>
+            <div class="well">
+                <p>ADS</p>
+            </div> -->
+        </div>
+    </div>
 </div>
+
+<footer class="container-fluid text-center">
+    <p>&copy; Klaudiusz Domagała 2018</p>
+</footer>
 
 </body>
 </html>
