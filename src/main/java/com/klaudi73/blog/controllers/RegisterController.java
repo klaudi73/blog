@@ -1,6 +1,7 @@
 package com.klaudi73.blog.controllers;
 
 
+import ch.qos.logback.core.pattern.color.RedCompositeConverter;
 import com.klaudi73.blog.models.UserEntity;
 import com.klaudi73.blog.repositories.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class RegisterController {
@@ -18,8 +20,10 @@ public class RegisterController {
     UserRepo userRepo;
 
     @GetMapping("/register")
-    public String register(Model model) {
-        model.addAttribute("user", new UserEntity());
+    public String register(Model model, RedirectAttributes redirectAttributes) {
+        UserEntity user = new UserEntity();
+        model.addAttribute("user", user);
+        redirectAttributes.addFlashAttribute("user", user);
         return "registerFormView";
     }
 

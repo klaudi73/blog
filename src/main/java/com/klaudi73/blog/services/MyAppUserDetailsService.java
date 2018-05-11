@@ -1,5 +1,6 @@
 package com.klaudi73.blog.services;
 
+import com.klaudi73.blog.BlogApplication;
 import com.klaudi73.blog.models.UserEntity;
 import com.klaudi73.blog.repositories.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +37,7 @@ public class MyAppUserDetailsService implements UserDetailsService {
         String password = user.getPassword();
 
         UserDetails userDetails = new User(name, password, Arrays.asList(authority));
-
+        BlogApplication.user = user;
         return userDetails;
     }
 
@@ -52,7 +53,7 @@ public class MyAppUserDetailsService implements UserDetailsService {
         String userLogin = user.getLogin();
         String userPassword = user.getPassword();
         UserDetails userDetails = new User(userLogin, userPassword, Arrays.asList(authority));
-
+        BlogApplication.user = user;
         return userDetails;
     }
 }
