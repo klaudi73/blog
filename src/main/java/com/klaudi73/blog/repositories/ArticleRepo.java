@@ -10,6 +10,7 @@ import java.util.List;
 public interface ArticleRepo extends CrudRepository<ArticleEntity, Long> {
     List<ArticleEntity> findAllByOrderByTitleAsc();
     List<ArticleEntity> findAllByOrderByIdAsc();
+    //List<ArticleEntity> findAllShort();
     //List<ArticleEntity> findById(Long id);
     //UserEntity getByName(String name);
     //UserEntity getByLogin(String login);

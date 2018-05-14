@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Articles</title>
+    <title><span th:text="#{default.title}">Title</span></title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -21,18 +21,6 @@
         </div>
         <div class="col-sm-8 text-left" id="mainText">
             <h2>Lista artykułów</h2>
-            <div class="col-lg-4" th:each="article : ${articlesCol}">
-                <h3><span th:text="${article.title}"></span></h3>
-                <p>
-                    <font color="black">
-                        <span th:text="${article.article}"></span>
-                    </font>
-                </p>
-                <a th:href="@{/viewArticle(id=${article.id})}">
-                    <button type="submit" class="btn btn-default">Cały artykuł</button>
-                </a>
-            </div>
-            <!--
             <table class="table table-hover table-striped">
                 <thead>
                 <tr>
@@ -67,7 +55,6 @@
                 </tr>
                 </tbody>
             </table>
-            -->
         </div>
         <div class="col-sm-2 sidenav" th:insert="sideRight :: sideRight">
 
