@@ -1,17 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Article</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <!--integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-            crossorigin="anonymous"></script>
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <div th:replace="header :: header"/>
+    <title>Articles Add Form</title>
 </head>
 
 <body>
@@ -30,7 +21,8 @@
                 </div>
                 <div class="form-group">
                     <label for="article">Article:</label>
-                    <textarea class="form-control" name="article" id="article" rows="10" cols="50" placeholder="Treść artykułu"></textarea>
+                    <textarea class="form-control" name="article" id="article" rows="10" cols="50"
+                              placeholder="Treść artykułu"></textarea>
                 </div>
                 <!-- <input type="text" name="article"><br>-->
                 <!-- <div class="form-group">

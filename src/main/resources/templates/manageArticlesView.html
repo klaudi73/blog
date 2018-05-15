@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <div th:replace="header :: header"/>
-    <title>Articles Page</title>
+    <title>Manage Articles Page</title>
 </head>
 <body>
 <div th:replace="nav :: navigation"></div>
@@ -16,7 +16,7 @@
             </div>
             <div class="col-sm-4" th:each="article : ${articlesCol}">
                 <div class="panel panel-default">
-                    <a th:href="@{/viewArticle(id=${article.id})}">
+                    <a th:href="@{/manageArticle(id=${article.id})}">
                         <div class="panel-heading">
                             <h3 class="panel-title"><span th:text="${article.title}"></span></h3>
                         </div>

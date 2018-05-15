@@ -3,6 +3,7 @@ package com.klaudi73.blog.controllers;
 import com.klaudi73.blog.BlogApplication;
 import com.klaudi73.blog.models.ArticleEntity;
 import com.klaudi73.blog.repositories.ArticleRepo;
+import com.klaudi73.blog.services.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.security.access.annotation.Secured;
@@ -97,26 +98,9 @@ public class ArticleController {
     public Iterable<ArticleEntity> showShortArticles() {
         Iterable<ArticleEntity> articlesCol;
         System.out.println("articleRepo.count(): " + articleRepo.count());
-        articlesCol = articleRepo.findAll();
+        articlesCol = articleRepo.findAllByOrderByIdDesc();
         List<ArticleEntity> articlesCol2 = new ArrayList<>();
-
-        for (ArticleEntity article: articlesCol) {
-            ArticleEntity article2 = article;
-            String strArticle = article.getArticle();
-            String strPoczatek = "";
-            int j;
-            if (strArticle.length() > 50) {
-                j = 50;
-            } else {
-                j = strArticle.length();
-            }
-            for (int i = 0; i < j ; i++) {
-                strPoczatek += strArticle.charAt(i);
-            }
-            strPoczatek += "...";
-            article2.setArticle(strPoczatek);
-            articlesCol2.add(article2);
-        }
+        ArticleService.changeArticlesToShort(articlesCol, articlesCol2);
         Iterable<ArticleEntity> articlesCollection = articlesCol2;
         return articlesCollection;
     }

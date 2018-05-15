@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 public class HomeController {
 
     @GetMapping("/index")
-    public String indexPage() {
+    public String indexPage(Model model) {
+        model.addAttribute("pageTitle", "Index Page");
         return "index";
     }
 
