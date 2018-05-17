@@ -1,30 +1,131 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <body>
-<nav class="navbar navbar-inverse" th:fragment="navigation">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary" th:fragment="navigation">
     <div class="container-fluid">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#myNavbar">
+                <span class="navbar-toggler-icon"></span>
             </button>
             <a class="navbar-brand" href="#">Blog</a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="/">Home</a></li>
-                <li><a href="/about">About</a></li>
-                <li><a href="/viewAllArticles">Artcles</a></li>
-                <li><a href="/manage">Manage</a></li>
+            <ul class="navbar-nav nabar-left">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/about"> About</a>
+                </li>
+
+                <!-- <li class="nav-item">
+                    <a class="nav-link" href="/viewAllArticles"> Artcles</a>
+                </li> -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarArticles" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Articles
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarArticles">
+                        <a class="dropdown-item" href="/viewMyArticles">View My Articles</a>
+                        <a class="dropdown-item" href="/viewAllArticles">View All Articles</a>
+                    </div>
+                </li>
+                <!-- <li class="nav-item">
+                    <a class="nav-link" href="/manage"> Manage</a>
+                </li> -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarManage" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Manage
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarManage">
+                        <a class="dropdown-item" href="/manageMyArticles">Manage My Articles</a>
+                        <a class="dropdown-item" href="/manageAllArticles">Manage All Articles</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/manage">Manage ...</a>
+                    </div>
+                </li>
             </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="/register"><span class="glyphicon glyphicon-edit"></span> Register</a></li>
-                <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-                <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/register">
+                        <span><img src="person.svg"></span> Register
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">
+                        <span><img src="sign-in.svg"></span> Login
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">
+                        <span><img src="sign-out.svg"></span> Logout
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
+
+    <!--
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#myNavbar" aria-controls="myNavbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="#">
+        Blog
+    </a>
+    <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/">
+                    Home
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/about">
+                    About
+                </a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownArticles" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Articles
+                </a>
+                <div class="dropdown-menu" aria-labelledby="dropdownArticles">
+                    <a class="dropdown-item" href="/viewMyArticles">View my articles</a>
+                    <a class="dropdown-item" href="/viewAllArticles">View all articles</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="dropdownManage" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Manage
+                </a>
+                <div class="dropdown-menu" aria-labelledby="dropdownManage">
+                    <a class="dropdown-item" href="/manageUserArticles">Manage my articles</a>
+                    <a class="dropdown-item" href="/manageAllArticles">Manage all articles</a>
+                </div>
+            </li>
+        </ul>
+        <ul class="navbar-nav navbar-right">
+            <li class="nav-item">
+                <a class="nav-link" href="/register">
+                    <span class="glyphicon glyphicon-edit"></span>
+                    Register
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/login">
+                    <span class="glyphicon glyphicon-log-in"></span>
+                    Login
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/logout">
+                    <span class="glyphicon glyphicon-log-out"></span>
+                    Logout
+                </a>
+            </li>
+        </ul>
+    </div>
+    -->
 </nav>
 </body>
 </html>
