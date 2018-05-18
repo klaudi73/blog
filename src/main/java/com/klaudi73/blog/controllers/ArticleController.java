@@ -78,6 +78,14 @@ public class ArticleController {
         return "articlesView";
     }
 
+    @Secured({"ROLE_USER", "ROLE_ADMIN"})
+    @GetMapping("/viewMyArticles")
+    public String viewMyArticles(Model model) {
+        Iterable<ArticleEntity> articlesCol = showShortArticles(BlogApplication.user.getUserId());
+        model.addAttribute("articlesCol", articlesCol);
+        return "articlesView";
+    }
+
     @GetMapping("/viewArticle")
     public String viewArticle(@ModelAttribute("id") Long id, Model model) {
         article = articleRepo.findById(id).get();
@@ -96,12 +104,34 @@ public class ArticleController {
     }
 
     public Iterable<ArticleEntity> showShortArticles() {
+        return getArticleEntities(null, articleRepo);
+        /*
         Iterable<ArticleEntity> articlesCol;
         System.out.println("articleRepo.count(): " + articleRepo.count());
         articlesCol = articleRepo.findAllByOrderByIdDesc();
         List<ArticleEntity> articlesCol2 = new ArrayList<>();
         ArticleService.changeArticlesToShort(articlesCol, articlesCol2);
         Iterable<ArticleEntity> articlesCollection = articlesCol2;
+        return articlesCollection; */
+    }
+
+    public Iterable<ArticleEntity> showShortArticles(Long userId) {
+        return getArticleEntities(userId, articleRepo);
+    }
+
+    static Iterable<ArticleEntity> getArticleEntities(Long userId, ArticleRepo articleRepo) {
+        Iterable<ArticleEntity> articlesCol;
+        System.out.println("articleRepo.count(): " + articleRepo.count());
+        if (userId == null) {
+            articlesCol = articleRepo.findAllByOrderByIdDesc();
+        } else {
+            articlesCol = articleRepo.findAllByAuthorIdOrderByIdDesc(userId);
+        }
+        List<ArticleEntity> articlesCol2 = new ArrayList<>();
+        ArticleService.changeArticlesToShort(articlesCol, articlesCol2);
+        Iterable<ArticleEntity> articlesCollection = articlesCol2;
         return articlesCollection;
     }
+
+
 }

@@ -1,6 +1,7 @@
 package com.klaudi73.blog.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.Objects;
 
 @Entity
@@ -11,9 +12,11 @@ public class ArticleEntity {
     @Column(name = "id")
     private Long id;
 
+    @NotEmpty(message = "Pole 'article' nie może być puste")
     @Column(name = "article", length = 10000)
     private String article;
 
+    @NotEmpty(message = "Pole 'title' nie może być puste")
     @Column(name = "title")
     private String title;
 

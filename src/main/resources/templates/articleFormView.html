@@ -15,20 +15,31 @@
         </div>
         <div class="col-sm-8 text-left">
             <form action="addArticle" th:action="@{/addArticle}" th:method="post">
-                <div class="form-group">
-                    <label for="title">Title:</label>
-                    <input class="form-control" type="text" name="title" id="title" size="50">
+                <div class="form-group row">
+                    <div class="col-sm-1 text-right">
+                        <label class="col-form-label" for="title">Title:</label>
+                    </div>
+                    <div class="col-sm-11">
+                        <input class="form-control" type="text" name="title" id="title" size="50">
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="article">Article:</label>
-                    <textarea class="form-control" name="article" id="article" rows="10" cols="50"
-                              placeholder="Treść artykułu"></textarea>
+                <div class="form-group row">
+                    <div class="col-sm-1 text-right">
+                        <label class="col-form-label" for="article">Article:</label>
+                    </div>
+                    <div class="col-sm-11">
+                        <textarea class="form-control" name="article" id="article" rows="10" cols="160"
+                                  placeholder="Treść artykułu">
+                        </textarea>
+                    </div>
                 </div>
-                <!-- <input type="text" name="article"><br>-->
-                <!-- <div class="form-group">
-                    <input  class="btn btn-default" type="submit" value="addArticle">
-                </div> -->
-                <button type="submit" class="btn btn-default">Add Article</button>
+                <div class="form-group row">
+                    <div class="col-sm-1 text-right">
+                    </div>
+                    <div class="col-sm-11 text-left">
+                        <button type="submit" class="btn btn-default">Add Article</button>
+                    </div>
+                </div>
             </form>
         </div>
         <div class="col-sm-2 sidenav" th:insert="sideRight :: sideRight">

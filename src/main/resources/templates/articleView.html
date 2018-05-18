@@ -12,8 +12,16 @@
 
         </div>
         <div class="col-sm-8 text-left">
-            <h3>Artykuł "<span th:text="${article.title}" />"</h3>
-            <p th:text="${article.article}">Article</p>
+            <div class="row">
+                <div class="panel panel-default col-sm-10 mx-auto my-5">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><span th:text="${article.title}"></span></h3>
+                    </div>
+                    <div class="panel-body">
+                        <span th:text="${article.article}"></span>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="col-sm-2 sidenav" th:insert="sideRight :: sideRight">
 

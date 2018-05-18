@@ -37,6 +37,24 @@ public class ManageController {
     }
 
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
+    @GetMapping("/manageMyArticles")
+    public String manageMyArticles(Model model) {
+        Long loginId = BlogApplication.user.getUserId();
+        Iterable<ArticleEntity> articlesCol = showMyArticlesShort(loginId);
+        model.addAttribute("articlesCol", articlesCol);
+        return "manageArticlesView";
+    }
+
+    @Secured("ROLE_ADMIN")
+    @GetMapping("/manageAllArticles")
+    public String manageAllArticles(Model model) {
+        Long loginId = BlogApplication.user.getUserId();
+        Iterable<ArticleEntity> articlesCol = showAllArticlesShort();
+        model.addAttribute("articlesCol", articlesCol);
+        return "manageArticlesView";
+    }
+
+    @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @GetMapping("/manageArticle")
     public String manageMyArticle(@ModelAttribute("id") Long id, Model model) {
         article = articleRepo.findById(id).get();
@@ -95,15 +113,11 @@ public class ManageController {
         return "redirect:/manage";
     }
 
-
     public Iterable<ArticleEntity> showMyArticlesShort(Long loginId) {
-        Iterable<ArticleEntity> articlesCol;
-        System.out.println("articleRepo.count(): " + articleRepo.count());
-        articlesCol = articleRepo.findAllByAuthorIdOrderByIdDesc(loginId);
-        List<ArticleEntity> articlesCol2 = new ArrayList<>();
+        return ArticleController.getArticleEntities(loginId, articleRepo);
+    }
 
-        ArticleService.changeArticlesToShort(articlesCol, articlesCol2);
-        Iterable<ArticleEntity> articlesCollection = articlesCol2;
-        return articlesCollection;
+    public Iterable<ArticleEntity> showAllArticlesShort() {
+        return ArticleController.getArticleEntities(null, articleRepo);
     }
 }

@@ -14,32 +14,49 @@
 
         </div>
         <div class="col-sm-8 text-left">
-            <div class="row" th:object="${article}">
-                <form action="editArticle" th:action="@{/deleteArticle}" th:method="post">
-                    <div class="form-group">
-                        <label for="title">Title:</label>
-                        <input class="form-control" type="text" name="newTitle" id="newTitle"
-                               size="50" th:value="*{title}" readonly>
+            <div class="container-fluid" th:object="${article}">
+                <form action="deleteArticle" th:action="@{/deleteArticle}" th:method="post">
+                    <div class="form-group row">
+                        <div class="col-sm-1 text-right">
+                            <label class="col-form-label" for="newTitle">Title:</label>
+                        </div>
+                        <div class="col-sm-11">
+                            <input class="form-control" type="text" name="newTitle" id="newTitle"
+                                   size="50" th:value="*{title}" readonly>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="article">Article:</label>
-                        <textarea class="form-control" name="newArticle" id="newArticle" rows="10" cols="50"
-                                  placeholder="Treść artykułu" th:text="*{article}" readonly>
-                    </textarea>
+                    <div class="form-group row">
+                        <div class="col-sm-1 text-right">
+                            <label class="col-form-label" for="newArticle">Article:</label>
+                        </div>
+                        <div class="col-sm-11">
+                            <textarea class="form-control" name="newArticle" id="newArticle" rows="10" cols="160"
+                                      placeholder="Treść artykułu" th:text="*{article}" readonly>
+                            </textarea>
+                        </div>
                     </div>
-                    <div class="hidden">
-                        <input class="form-control" type="text" name="id" id="id"
-                               size="50" th:value="*{id}" readonly>
+                    <div class="form-group row">
+                        <div class="col-sm-1 text-right">
+                        </div>
+                        <div class="col-sm-2 text-left">
+                            <button type="submit" class="btn btn-danger">Delete?</button>
+                        </div>
                     </div>
-                    <div>
-                        <button type="submit" class="btn btn-default">Delete?</button>
+                    <div class="form-group row">
+                        <div class="invisible">
+                            <input class="form-control" type="text" name="id" id="id"
+                                   size="50" th:value="*{id}" readonly>
+                        </div>
                     </div>
-
                 </form>
-                <div>
-                    <a href="/manage">
-                        <button class="btn btn-default">Back</button>
-                    </a>
+                <div class="row">
+                    <div class="col-sm-1">
+                    </div>
+                    <div class="col-sm-11 text-left">
+                        <a href="/manage">
+                            <button class="btn btn-default">Back</button>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>

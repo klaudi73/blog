@@ -11,32 +11,65 @@
         <div class="col-sm-2 sidenav" th:insert="sideLeft :: sideLeft">
 
         </div>
-        <div class="col-sm-8 text-center">
+        <div class="col-sm-8">
+            <form class="form-horizontal" action="register" th:action="@{/register}" th:object="${user}" th:method="post">
+                <div class="form-group row">
+                    <div class="col-sm-1 text-right">
+                        <label class="col-form-label" for="login">login:</label>
+                    </div>
+                    <div class="col-sm-11">
+                        <input class="form-control" id="login" type="text" name="login"
+                               th:field="*{login}" placeholder="login"/>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-1 text-right">
+                        <label class="col-form-label" for="name">name:</label>
+                    </div>
+                    <div class="col-sm-11">
+                        <input class="form-control" id="name" type="text" name="name"
+                               th:field="*{name}" placeholder="name"/>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-1 text-right">
+                        <label class="col-form-label" for="password">password:</label>
+                    </div>
+                    <div class="col-sm-11">
+                        <input class="form-control" id="password" type="password"
+                               th:field="*{password}" placeholder="password"/>
+                    </div>
+                </div>
+                <!--
+                <div class="form-group row">
+                    <div class="col-sm-1 text-right">
+                        <label class="control-label" for="password2">password:</label>
+                    </div>
+                    <div class="col-sm-11">
+                        <input class="form-control" id="password2" type="password2"
+                               th:field="*{password2}" placeholder="password"/>
+                    </div>
+                </div>
+                -->
+                <div class="form-group row">
+                    <div class="col-sm-1 text-right">
+                        <label class="col-form-label" for="role">role:</label>
+                    </div>
+                    <div class="col-sm-11">
+                        <select class="form-control" id="role" th:field="*{role}">
+                            <option value="ROLE_USER">ROLE_USER</option>
+                            <option value="ROLE_ADMIN">ROLE_ADMIN</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-1">
 
-            <form th:action="@{/register}" th:object="${user}" th:method="post">
-
-                <label for="login">login</label>
-                <input id="login" type="text" th:field="*{login}"/>
-                <br>
-
-                <label for="name">name</label>
-                <input id="name" type="text" th:field="*{name}"/>
-                <br>
-
-                <label for="password">password</label>
-                <input id="password" type="password" th:field="*{password}"/>
-                <br>
-
-                <label for="role">role</label>
-
-                <select id="role" th:field="*{role}">
-                    <option value="ROLE_USER">ROLE_USER</option>
-                    <option value="ROLE_ADMIN">ROLE_ADMIN</option>
-                </select>
-                <br>
-
-                <input type="submit" value="Add"/>
-
+                    </div>
+                    <div class="col-sm-11 text-left">
+                        <input class="btn btn-default" type="submit" value="Add"/>
+                    </div>
+                </div>
             </form>
         </div>
         <div class="col-sm-2 sidenav" th:insert="sideRight :: sideRight">

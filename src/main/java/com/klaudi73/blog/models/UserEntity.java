@@ -2,6 +2,7 @@ package com.klaudi73.blog.models;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 public class UserEntity {
@@ -11,12 +12,15 @@ public class UserEntity {
     @Column(name = "user_id")
     private Long userId;
 
+    @NotEmpty(message = "Pole 'login' nie może być puste")
     @Column(name = "login")
     private String login;
 
+    @NotEmpty(message = "Pole 'name' nie może być puste")
     @Column(name = "name")
     private String name;
 
+    @NotEmpty(message = "Pole 'password' nie może być puste")
     @Column(name = "password")
     private String password;
 

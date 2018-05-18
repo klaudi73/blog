@@ -43,6 +43,13 @@ body {
     box-shadow: 0 20px 20px 0 #555555;
 }
 
+.form {
+    border: 1px;
+    padding: 0 0 20px 0;
+    margin: 10px;
+    box-shadow: 0 20px 20px 0 #555555;
+}
+
 .equal {
     display: -webkit-flex;
     display: flex;
