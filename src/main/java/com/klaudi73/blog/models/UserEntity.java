@@ -1,8 +1,7 @@
 package com.klaudi73.blog.models;
 
-
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
+import java.util.Objects;
 
 @Entity
 public class UserEntity {
@@ -12,15 +11,15 @@ public class UserEntity {
     @Column(name = "user_id")
     private Long userId;
 
-    @NotEmpty(message = "Pole 'login' nie może być puste")
     @Column(name = "login")
     private String login;
 
-    @NotEmpty(message = "Pole 'name' nie może być puste")
     @Column(name = "name")
     private String name;
 
-    @NotEmpty(message = "Pole 'password' nie może być puste")
+    @Column(name = "email")
+    private String email;
+
     @Column(name = "password")
     private String password;
 
@@ -30,9 +29,10 @@ public class UserEntity {
     public UserEntity() {
     }
 
-    public UserEntity(String login, String name, String password, String role) {
+    public UserEntity(String login, String name, String email, String password, String role) {
         this.login = login;
         this.name = name;
+        this.email = email;
         this.password = password;
         this.role = role;
     }
@@ -77,12 +77,41 @@ public class UserEntity {
         this.role = role;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof UserEntity)) return false;
+        UserEntity that = (UserEntity) o;
+        return Objects.equals(getUserId(), that.getUserId()) &&
+                Objects.equals(getLogin(), that.getLogin()) &&
+                Objects.equals(getName(), that.getName()) &&
+                Objects.equals(getEmail(), that.getEmail()) &&
+                Objects.equals(getPassword(), that.getPassword()) &&
+                Objects.equals(getRole(), that.getRole());
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(getUserId(), getLogin(), getName(), getEmail(), getPassword(), getRole());
+    }
+
     @Override
     public String toString() {
-        return "User{" +
+        return "UserEntity{" +
                 "userId=" + userId +
                 ", login='" + login + '\'' +
                 ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
                 ", role='" + role + '\'' +
                 '}';
     }

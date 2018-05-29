@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary" th:fragment="navigation">
     <div class="container-fluid">
@@ -17,7 +17,16 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/about"> About</a>
                 </li>
-                <li class="nav-item dropdown">
+
+                <li sec:authorize="isAnonymous()" class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarArticles" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Articles
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarArticles">
+                        <a class="dropdown-item" href="/viewAllArticles">View All Articles</a>
+                    </div>
+                </li>
+                <li sec:authorize="isAuthenticated()" class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarArticles" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Articles
                     </a>
@@ -28,7 +37,8 @@
                         <a class="dropdown-item" href="/addArticle">Add Article</a>
                     </div>
                 </li>
-                <li class="nav-item dropdown">
+
+                <li sec:authorize="isAuthenticated()" class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarManage" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Manage
                     </a>
@@ -39,19 +49,30 @@
                         <a class="dropdown-item" href="/manage">Manage ...</a>
                     </div>
                 </li>
+                <li sec:authorize="isAuthenticated()" class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarMyAccount" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        My Account
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarMyAccount">
+                        <a class="dropdown-item" href="/manageMyAccount">Manage My Account</a>
+                        <a class="dropdown-item" href="/manageAllAccounts">Manage All Accounts</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/manage">Manage ...</a>
+                    </div>
+                </li>
             </ul>
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
+                <li sec:authorize="isAnonymous()" class="nav-item">
                     <a class="nav-link" href="/register">
                         <span><img src="person.svg"></span> Register
                     </a>
                 </li>
-                <li class="nav-item">
+                <li sec:authorize="isAnonymous()" class="nav-item">
                     <a class="nav-link" href="/login">
                         <span><img src="sign-in.svg"></span> Login
                     </a>
                 </li>
-                <li class="nav-item">
+                <li sec:authorize="isAuthenticated()" class="nav-item">
                     <a class="nav-link" href="/logout">
                         <span><img src="sign-out.svg"></span> Logout
                     </a>
