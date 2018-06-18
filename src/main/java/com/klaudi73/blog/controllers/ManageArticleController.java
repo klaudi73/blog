@@ -20,7 +20,7 @@ import java.util.Objects;
 
 
 @Controller
-public class ManageController {
+public class ManageArticleController {
 
     @Autowired
     ArticleRepo articleRepo;
@@ -30,6 +30,8 @@ public class ManageController {
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @GetMapping("/manage")
     public String showMyArticles(Model model) {
+        System.out.println("---ManageArticleController---");
+        System.out.println("---metoda showMyArticles(Model model)---");
         Long loginId = BlogApplication.user.getUserId();
         Iterable<ArticleEntity> articlesCol = showMyArticlesShort(loginId);
         model.addAttribute("articlesCol", articlesCol);
@@ -39,6 +41,8 @@ public class ManageController {
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @GetMapping("/manageMyArticles")
     public String manageMyArticles(Model model) {
+        System.out.println("---ManageArticleController---");
+        System.out.println("---metoda manageMyArticles(Model model)---");
         Long loginId = BlogApplication.user.getUserId();
         Iterable<ArticleEntity> articlesCol = showMyArticlesShort(loginId);
         model.addAttribute("articlesCol", articlesCol);
@@ -48,6 +52,8 @@ public class ManageController {
     @Secured("ROLE_ADMIN")
     @GetMapping("/manageAllArticles")
     public String manageAllArticles(Model model) {
+        System.out.println("---ManageArticleController---");
+        System.out.println("---metoda manageAllArticles(Model model)---");
         Long loginId = BlogApplication.user.getUserId();
         Iterable<ArticleEntity> articlesCol = showAllArticlesShort();
         model.addAttribute("articlesCol", articlesCol);
@@ -57,6 +63,8 @@ public class ManageController {
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @GetMapping("/manageArticle")
     public String manageMyArticle(@ModelAttribute("id") Long id, Model model) {
+        System.out.println("---ManageArticleController---");
+        System.out.println("---metoda manageMyArticle(@ModelAttribute(\"id\") Long id, Model model)---");
         article = articleRepo.findById(id).get();
         System.out.println("article: " + article);
         model.addAttribute("article", article);
@@ -67,6 +75,9 @@ public class ManageController {
     @GetMapping("/editArticle")
     public String editMyArticle(@ModelAttribute("id") Long articleId, Model model,
                                 RedirectAttributes redirectAttributes) {
+        System.out.println("---ManageArticleController---");
+        System.out.println("---metoda editMyArticle(@ModelAttribute(\"id\") Long articleId, Model model, \n" +
+                "RedirectAttributes redirectAttributes)---");
         article = articleRepo.findById(articleId).get();
         System.out.println("article: " + article);
         model.addAttribute("article", article);
@@ -80,6 +91,10 @@ public class ManageController {
     public String confirmEditionOfMyArticle(@ModelAttribute("newArticle") String newArticle,
                                             @ModelAttribute("newTitle") String newTitle,
                                             @ModelAttribute("id") Long id, Model model) {
+        System.out.println("---ManageArticleController---");
+        System.out.println("---metoda String confirmEditionOfMyArticle(@ModelAttribute(\"newArticle\") String newArticle, \n" +
+                "@ModelAttribute(\"newTitle\") String newTitle, \n" +
+                "@ModelAttribute(\"id\") Long id, Model model)---");
         ArticleEntity articleToUpdate = articleRepo.findById(id).get();
         articleToUpdate.setArticle(newArticle);
         articleToUpdate.setTitle(newTitle);
@@ -92,6 +107,9 @@ public class ManageController {
     @GetMapping("/deleteArticle")
     public String deleteMyArticle(@ModelAttribute("id") Long articleId, Model model,
                                 RedirectAttributes redirectAttributes) {
+        System.out.println("---ManageArticleController---");
+        System.out.println("---metoda deleteMyArticle(@ModelAttribute(\"id\") Long articleId, Model model, \n" +
+                "RedirectAttributes redirectAttributes)---");
         article = articleRepo.findById(articleId).get();
         System.out.println("article: " + article);
         model.addAttribute("article", article);
@@ -105,6 +123,10 @@ public class ManageController {
     public String confirmDeletionOfMyArticle(@ModelAttribute("newArticle") String newArticle,
                                             @ModelAttribute("newTitle") String newTitle,
                                             @ModelAttribute("id") Long id, Model model) {
+        System.out.println("---ManageArticleController---");
+        System.out.println("---metoda confirmDeletionOfMyArticle(@ModelAttribute(\"newArticle\") String newArticle, \n" +
+                "@ModelAttribute(\"newTitle\") String newTitle, \n" +
+                "@ModelAttribute(\"id\") Long id, Model model)---");
         ArticleEntity articleToDelete = articleRepo.findById(id).get();
         articleToDelete.setArticle(newArticle);
         articleToDelete.setTitle(newTitle);
@@ -114,10 +136,14 @@ public class ManageController {
     }
 
     public Iterable<ArticleEntity> showMyArticlesShort(Long loginId) {
+        System.out.println("---ManageArticleController---");
+        System.out.println("---metoda showMyArticlesShort(Long loginId)---");
         return ArticleController.getArticleEntities(loginId, articleRepo);
     }
 
     public Iterable<ArticleEntity> showAllArticlesShort() {
+        System.out.println("---ManageArticleController---");
+        System.out.println("---metoda showAllArticlesShort()---");
         return ArticleController.getArticleEntities(null, articleRepo);
     }
 }

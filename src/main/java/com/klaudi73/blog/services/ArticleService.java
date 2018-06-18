@@ -1,9 +1,11 @@
 package com.klaudi73.blog.services;
 
 import com.klaudi73.blog.models.ArticleEntity;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class ArticleService {
     public static void changeArticlesToShort(Iterable<ArticleEntity> articlesCol, List<ArticleEntity> articlesCol2) {
         for (ArticleEntity article: articlesCol) {

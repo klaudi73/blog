@@ -1,4 +1,4 @@
-package com.klaudi73.blog.validators;
+package com.klaudi73.blog.exceptions;
 
 @SuppressWarnings("serial")
 public class EmailExistsException extends Throwable {

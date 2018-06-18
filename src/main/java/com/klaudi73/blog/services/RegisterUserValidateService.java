@@ -1,13 +1,12 @@
 package com.klaudi73.blog.services;
 
-import com.klaudi73.blog.models.RegisterUser;
 import com.klaudi73.blog.repositories.UserRepo;
+import org.springframework.stereotype.Service;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
-import java.util.List;
-import java.util.Objects;
 
+@Service
 public class RegisterUserValidateService implements ConstraintValidator<RegisterUserValidatorService, String> {
 
     UserRepo userRepo;

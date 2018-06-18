@@ -9,12 +9,16 @@ public class GeneralController {
 
     @GetMapping("/")
     public String home(){
+        System.out.println("---GeneralController---");
+        System.out.println("---metoda home()---");
         return "index";
     }
 
     @Secured("ROLE_ADMIN")
     @GetMapping("/secret")
     public String secret() {
+        System.out.println("---GeneralController---");
+        System.out.println("---metoda secret()---");
         return "secretPage";
     }
 }

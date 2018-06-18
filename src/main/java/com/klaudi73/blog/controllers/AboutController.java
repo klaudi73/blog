@@ -19,6 +19,8 @@ public class AboutController {
 
     @GetMapping("/about")
     public String about(){
+        System.out.println("---AboutController---");
+        System.out.println("---metoda about()---");
         return "about";
     }
 

@@ -1,4 +1,4 @@
-package com.klaudi73.blog.validators;
+package com.klaudi73.blog.exceptions;
 
 @SuppressWarnings("serial")
 public class PasswordNotMatchException extends Throwable {
@@ -6,5 +6,4 @@ public class PasswordNotMatchException extends Throwable {
     public PasswordNotMatchException(final String message) {
         super(message);
     }
-
 }

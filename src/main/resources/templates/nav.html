@@ -10,7 +10,7 @@
             <a class="navbar-brand" href="#">Blog</a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
-            <ul class="navbar-nav nabar-left">
+            <ul class="navbar-nav navbar-left">
                 <li class="nav-item active">
                     <a class="nav-link" href="/">Home</a>
                 </li>
@@ -27,10 +27,10 @@
                     </div>
                 </li>
                 <li sec:authorize="isAuthenticated()" class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarArticles" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarArticlesAuth" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Articles
                     </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarArticles">
+                    <div class="dropdown-menu" aria-labelledby="navbarArticlesAuth">
                         <a class="dropdown-item" href="/viewMyArticles">View My Articles</a>
                         <a class="dropdown-item" href="/viewAllArticles">View All Articles</a>
                         <div class="dropdown-divider"></div>
@@ -44,7 +44,9 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarManage">
                         <a class="dropdown-item" href="/manageMyArticles">Manage My Articles</a>
-                        <a class="dropdown-item" href="/manageAllArticles">Manage All Articles</a>
+                        <sec:authorize access="hasRole('admin')">
+                            <a class="dropdown-item" href="/manageAllArticles">Manage All Articles</a>
+                        </sec:authorize>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="/manage">Manage ...</a>
                     </div>
@@ -55,7 +57,9 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarMyAccount">
                         <a class="dropdown-item" href="/manageMyAccount">Manage My Account</a>
-                        <a class="dropdown-item" href="/manageAllAccounts">Manage All Accounts</a>
+                        <sec:authorize access="hasRole('admin')">
+                            <a class="dropdown-item" href="/manageAllAccounts">Manage All Accounts</a>
+                        </sec:authorize>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="/manage">Manage ...</a>
                     </div>

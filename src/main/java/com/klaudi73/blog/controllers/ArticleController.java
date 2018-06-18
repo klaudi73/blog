@@ -30,6 +30,8 @@ public class ArticleController {
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @GetMapping("/addArticle")
     public String addArticle(Model model) { //, RedirectAttributes redirectAttributes) {
+        System.out.println("---ArticleController---");
+        System.out.println("---metoda addArticle(Model model)---");
         try {
             model.addAttribute("article", new ArticleEntity());
             //redirectAttributes.addFlashAttribute("user", user);
@@ -44,6 +46,8 @@ public class ArticleController {
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @PostMapping("/addArticle")
     public String addArticle(@ModelAttribute ArticleEntity articleEntity, RedirectAttributes redirectAttributes) {
+        System.out.println("---ArticleController---");
+        System.out.println("addArticle(@ModelAttribute ...)---");
         try {
             articleEntity.setAuthorId(BlogApplication.user.getUserId());
             articleRepo.save(articleEntity);
@@ -60,8 +64,9 @@ public class ArticleController {
 
 
     @GetMapping("/viewArticles")
-    public String viewArticles(@ModelAttribute("articlesCol") Iterable<ArticleEntity> articlesCol, Model model
-                               ) {
+    public String viewArticles(@ModelAttribute("articlesCol") Iterable<ArticleEntity> articlesCol, Model model) {
+        System.out.println("---ArticleController---");
+        System.out.println("---metoda viewArticles(@ModelAttribute(... ))---");
         if (Objects.isNull(articlesCol)) {
             //articlesCol = articleRepo.findAllByOrderByTitleAsc();
             articlesCol = articleRepo.findAllByOrderByIdAsc();
@@ -73,6 +78,8 @@ public class ArticleController {
 
     @GetMapping("/viewAllArticles")
     public String viewAllArticles(Model model) {
+        System.out.println("---ArticleController---");
+        System.out.println("---metoda viewAllArticles(Model model)---");
         Iterable<ArticleEntity> articlesCol = showShortArticles();
         model.addAttribute("articlesCol", articlesCol);
         return "articlesView";
@@ -81,6 +88,8 @@ public class ArticleController {
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @GetMapping("/viewMyArticles")
     public String viewMyArticles(Model model) {
+        System.out.println("---ArticleController---");
+        System.out.println("---metoda viewMyArticles(Model model)---");
         Iterable<ArticleEntity> articlesCol = showShortArticles(BlogApplication.user.getUserId());
         model.addAttribute("articlesCol", articlesCol);
         return "articlesView";
@@ -88,6 +97,8 @@ public class ArticleController {
 
     @GetMapping("/viewArticle")
     public String viewArticle(@ModelAttribute("id") Long id, Model model) {
+        System.out.println("---ArticleController---");
+        System.out.println("---metoda viewArticle(@ModelAttribute(\"id\") Long id, Model model)---");
         article = articleRepo.findById(id).get();
         /*if (!listArticle.isEmpty()) {
             article = listArticle.get(0);
@@ -99,11 +110,15 @@ public class ArticleController {
     @PostMapping("/viewArticle")
     public String viewArticle(@ModelAttribute("article") ArticleEntity article,
                               Model model) {
+        System.out.println("---ArticleController---");
+        System.out.println("---metoda viewArticle(@ModelAttribute(\"article\") ArticleEntity article, Model model)---");
         model.addAttribute("article", article);
         return "articleView";
     }
 
     public Iterable<ArticleEntity> showShortArticles() {
+        System.out.println("---ArticleController---");
+        System.out.println("---metoda showShortArticles()---");
         return getArticleEntities(null, articleRepo);
         /*
         Iterable<ArticleEntity> articlesCol;
@@ -116,10 +131,14 @@ public class ArticleController {
     }
 
     public Iterable<ArticleEntity> showShortArticles(Long userId) {
+        System.out.println("---ArticleController---");
+        System.out.println("---showShortArticles(Long userId)---");
         return getArticleEntities(userId, articleRepo);
     }
 
     static Iterable<ArticleEntity> getArticleEntities(Long userId, ArticleRepo articleRepo) {
+        System.out.println("---ArticleController---");
+        System.out.println("---getArticleEntities(Long userId, ArticleRepo articleRepo)---");
         Iterable<ArticleEntity> articlesCol;
         System.out.println("articleRepo.count(): " + articleRepo.count());
         if (userId == null) {
@@ -132,6 +151,4 @@ public class ArticleController {
         Iterable<ArticleEntity> articlesCollection = articlesCol2;
         return articlesCollection;
     }
-
-
 }

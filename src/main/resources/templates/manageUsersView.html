@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="header :: header"/>
+    <title>Manage User Page</title>
+</head>
+<body>
+<div th:insert="nav :: navigation"></div>
+<div class="container-fluid text-center">
+    <div class="row content">
+        <div class="col-sm-2 sidenav" th:insert="sideLeft :: sideLeft">
+
+        </div>
+        <div class="col-sm-8 text-left">
+            <div class="row" th:each="user : ${usersCol}">
+                <div class="panel panel-default col-sm-10 mx-auto my-5">
+                    <div class="panel-heading">
+                        <h3 class="panel-title mx-2"><span th:text="${user.login}"></span></h3>
+                    </div>
+                    <div class="panel-body mx-2 text-justify">
+                        <span th:text="${user.name}"></span>
+                        <span th:text="${user.lastName}"></span>
+                        <span th:text="${user.email}"></span>
+                        <span>enabled: </span><span th:text="${user.enabled}"></span>
+                        <span th:text="${user.roles}"></span>
+                    </div>
+                    <div class="panel-footer">
+                        <a th:href="@{/editUser(id=${user.userId})}">
+                            <button type="button" class="btn btn-warning mx-2">Edit</button>
+                        </a>
+                        <span class="col-6 col-sm-offset-1"></span>
+                        <a th:href="@{/deleteUser(id=${user.userId})}">
+                            <button type="button" class="btn btn-danger mx-2">Delete</button>
+                        </a>
+                        <a th:href="@{/}">
+                            <button type="button" class="btn btn-secondary mx-2">Home</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2 sidenav" th:insert="sideRight :: sideRight">
+
+        </div>
+    </div>
+</div>
+
+<div th:insert="footer :: copyright"></div>
+</body>
+</html>

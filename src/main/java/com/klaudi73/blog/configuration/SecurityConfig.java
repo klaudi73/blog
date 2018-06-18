@@ -35,7 +35,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .passwordParameter("password")
 
                 .and()
-                    //logmeout
+                    //logout
                     .logout()
                     .logoutUrl("/logout")
                     .logoutSuccessUrl("/")

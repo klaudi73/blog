@@ -1,6 +1,7 @@
 package com.klaudi73.blog.services;
 
 import com.klaudi73.blog.BlogApplication;
+import com.klaudi73.blog.models.Role;
 import com.klaudi73.blog.models.UserEntity;
 import com.klaudi73.blog.repositories.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 @Service
 public class MyAppUserDetailsService implements UserDetailsService {
@@ -23,36 +25,18 @@ public class MyAppUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
 
-        UserEntity user = userRepo.getByName(userName);
+        UserEntity user = userRepo.getByLogin(userName);
 
         if (user == null) {
             throw new UsernameNotFoundException("user not found");
         }
-
-        GrantedAuthority authority = new SimpleGrantedAuthority(user.getRole());
-        //BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-
-        String name = user.getName();
-        //String password = passwordEncoder.encode(user.getPassword());
-        String password = user.getPassword();
-
-        UserDetails userDetails = new User(name, password, Arrays.asList(authority));
-        BlogApplication.user = user;
-        return userDetails;
-    }
-
-    public UserDetails loadUserByLogin(String login) {
-
-        UserEntity user = userRepo.getByLogin(login);
-
-        if (user == null) {
-            throw new UsernameNotFoundException("user not found");
+        Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
+        for (Role role : user.getRoles()){
+            grantedAuthorities.add(new SimpleGrantedAuthority(role.getName()));
         }
 
-        GrantedAuthority authority = new SimpleGrantedAuthority(user.getRole());
-        String userLogin = user.getLogin();
-        String userPassword = user.getPassword();
-        UserDetails userDetails = new User(userLogin, userPassword, Arrays.asList(authority));
+        UserDetails userDetails = new User(user.getLogin(), user.getPassword(), user.getEnabled(),
+                true, true, true, grantedAuthorities);
         BlogApplication.user = user;
         return userDetails;
     }
